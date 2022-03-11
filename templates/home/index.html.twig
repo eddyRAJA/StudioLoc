@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}MyCompany{% endblock %}
 
 {% block body %}
   <style>
@@ -17,20 +17,23 @@
   </style>
 
   <div class="container">
-    <h1>You're welcome to StudLoc!</h1>
 
-    This friendly message is coming from:
-    <ul>
-      <li>Your controller at
-        <code>
-          <a href="{{ '/home/edha/Documents/Projet 1221-0322/StudioLoc/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a>
-        </code>
-      </li>
-      <li>Your template at
-        <code>
-          <a href="{{ '/home/edha/Documents/Projet 1221-0322/StudioLoc/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a>
-        </code>
-      </li>
-    </ul>
+    <div class="media-body">
+      <h1 class="mt-0">
+        {{ company.name }}</h1>
+
+      <img class="align-self-start mr-3" height="300" src="{{ company.poster }}" alt="poster of {{ company.name }} ">
+      <p>Description :
+        {{ company.description }}</p>
+      {# 
+      <p>Created on:
+        {{ company.createdAt }}</p>
+      <p>Updated on:
+        {{ company.updatedAt }}</p>
+     #}
+      <p>slug :
+        {{ company.slug }}</p>
+    </div>
+
   </div>
 {% endblock %}
