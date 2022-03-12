@@ -28,16 +28,7 @@ class StudioFixtures extends Fixture
 
             $manager->persist($category);
             $this->addReference('category_' . $key, $category);
-
-            for ($i=0; $i < 3; $i++) { 
-                $studio = new Studio();
-                $studio->setName($faker->sentence(2));
-                if ($this->hasReference('category' . $key . $category )) {
-                    $studio->getCategory($this->getReference('category_' . $key));
-                    $manager->persist($studio);
-                    dd($studio);
-                }            
-            }           
+            //dd('category_' . $key);          
         }
         $manager->flush();
 
