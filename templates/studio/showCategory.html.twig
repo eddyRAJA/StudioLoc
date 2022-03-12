@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}oneCategory{% endblock %}
+
+{% block body %}
+  <h1>{{ category.name }}
+    studios</h1>
+
+  {% for studio in studios %}
+    <div class="container">
+      <h3 class="mt-0">
+        {{ studio.name }}
+        studios</h3>
+
+      <img class="align-self-start mr-3" height="300" src="{{ studio.poster }}" alt="poster of {{ studio.name }} ">
+      <p>Summary :
+        {{ studio.summary }}</p>
+      <p>detail :
+        {{ studio.detail }}</p>
+      <p>unitPrice :
+        {{ studio.unitPrice }}</p>
+      {# 
+      <p>Created on:
+        {{ company.createdAt }}</p>
+      <p>Updated on:
+        {{ company.updatedAt }}</p>
+    
+        <p>slug :
+          {{ category.slug }}</p> #}
+    </div>
+  {% endfor %}
+
+</div>
+<div class="container">
+  <pre>
+    {{ dump(studios) }}
+</pre>
+</div>
+
+{% endblock %}

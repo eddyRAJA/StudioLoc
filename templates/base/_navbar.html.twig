@@ -20,80 +20,82 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li>
-              <a class="dropdown-item" href="{{ path('category') }}">AllStudios</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="">Recording</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="">Mixing</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="">Mastering</a>
-            </li>
-            <li class="nav-item">
-              <a class="dropdown-item" href="">Video set</a>
-            </li>
-
+              <a class="dropdown-item" href="{{ path('categories_show') }}">AllStudios</a>
             <li><hr class="dropdown-divider"></li>
-            <li>
-              <a class="dropdown-item" href="#">Terms and conditions of use
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#">The rates</a>
-            </li>
-          </ul>
+          </li>
+          <li>
+            <a class="dropdown-item" href="{{ path('category_show', {'id': '1'}) }}">Recording</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="{{ path('category_show', {'id': '2'}) }}">Mixing</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="{{ path('category_show', {'id': '3'}) }}">Mastering</a>
+          <li><hr class="dropdown-divider"></li>
+        </li>
+        <li>
+          <a class="dropdown-item" href="{{ path('category_show', {'id': '4'}) }}">Video set</a>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact us</a>
+        <li><hr class="dropdown-divider"></li>
+        <li>
+          <a class="dropdown-item" href="#">Terms and conditions of use
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">The rates</a>
         </li>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+    </li>
 
-      <div>
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item dropdown">
-            {% if app.user %}
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                {{ app.user.email }}
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                {% if is_granted('ROLE_ADMIN') %}
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ path('admin') }}">adminSpace</a>
-                  </li>
-                {% else %}
-                  <li>
-                    <a class="dropdown-item" href="#">My account</a>
-                  </li>
-                {% endif %}
-                {#<li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Contact us</a>
+    </li>
+  </ul>
+  <form class="d-flex">
+    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+  </form>
+
+  <div>
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item dropdown">
+        {% if app.user %}
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{ app.user.email }}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            {% if is_granted('ROLE_ADMIN') %}
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{ path('admin') }}">adminSpace</a>
+              </li>
+            {% else %}
+              <li>
+                <a class="dropdown-item" href="#">My account</a>
+              </li>
+            {% endif %}
+            {#<li>
                   <a class="dropdown-item" href="#">Mastering</a>
                 </li>
                 <li>
                   <a class="dropdown-item" href="#">Another action</a>
                 </li>#}
-                <li><hr class="dropdown-divider"></li>
-                <li>
-                  <a class="dropdown-item" href="{{ path('app_logout') }}">Disconnect</a>
-                </li>
-              {% else %}
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ path('app_login') }}">
-                    Connexion</a>
-                </li>
-              {% endif %}
-            </ul>
-          </li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+              <a class="dropdown-item" href="{{ path('app_logout') }}">Disconnect</a>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ path('app_login') }}">
+                Connexion</a>
+            </li>
+          {% endif %}
         </ul>
-      </div>
+      </li>
+    </ul>
+  </div>
 
-      {#<ul>
+  {#<ul>
         <lo class="nav-item">
           {% if app.user %}
             <a>{{ app.user.email }}</a>
@@ -107,6 +109,6 @@
         </lo>
       </ul>#}
 
-    </div>
-  </div>
+</div>
+</div>
 </nav>
