@@ -31,23 +31,5 @@ class StudioFixtures extends Fixture
             //dd('category_' . $key);          
         }
         $manager->flush();
-
-        
-// Attempted to call an undefined method named "setCategory" of class "Doctrine\Common\Collections\ArrayCollection".
-
- /*         for ($i=0; $i < 11 ; $i++) { 
-            $studio = new Studio();
-            $studio->getName($faker->sentence(2))
-                ->setCategory($this->getReference('category_'. $faker->numberBetween(9,12)))
-                ->setSummary($faker->paragraph(5))
-                ->setPoster('/assets/images/studioLoc.jpg')
-                ->setUnitPrice($faker->numberBetween(40, 60))
-                ->setDetail($faker->paragraph(10));
-
-                $manager->persist($studio);
-            
-        };
-
-        $manager->flush();*/
     }
 }
