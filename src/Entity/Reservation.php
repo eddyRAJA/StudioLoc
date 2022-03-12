@@ -26,8 +26,7 @@ class Reservation
     private $author;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Studio::class, inversedBy="name")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity=Studio::class, inversedBy="reservations")
      */
     private $studio;
 
