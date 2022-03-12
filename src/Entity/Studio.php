@@ -22,9 +22,15 @@ class Studio
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity=Reservation::class, mappedBy="studio")
+     * @ORM\Column(type="string", length=255)
      */
     private $name;
+
+    /**
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
 
     /**
      * @ORM\ManyToOne(targetEntity=CategoryStudio::class, inversedBy="studios")
@@ -64,49 +70,19 @@ class Studio
      */
     private $updatedAt;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Reservation::class, mappedBy="studio")
+     */
+    private $reservations;
+
     public function __construct()
     {
-        $this->name = new ArrayCollection();
-    }
-
-    public function __toString()
-    {
-        return $this->name;
+        $this->reservations = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    /**
-     * @return Collection|Reservation[]
-     */
-    public function getName(): Collection
-    {
-        return $this->name;
-    }
-
-    public function addName(Reservation $name): self
-    {
-        if (!$this->name->contains($name)) {
-            $this->name[] = $name;
-            $name->setStudio($this);
-        }
-
-        return $this;
-    }
-
-    public function removeName(Reservation $name): self
-    {
-        if ($this->name->removeElement($name)) {
-            // set the owning side to null (unless already changed)
-            if ($name->getStudio() === $this) {
-                $name->setStudio(null);
-            }
-        }
-
-        return $this;
     }
 
     public function getCategory(): ?CategoryStudio
@@ -177,5 +153,52 @@ class Studio
     public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updatedAt;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @return Collection|Reservation[]
+     */
+    public function getReservations(): Collection
+    {
+        return $this->reservations;
+    }
+
+    public function addReservation(Reservation $reservation): self
+    {
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations[] = $reservation;
+            $reservation->setStudio($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservation $reservation): self
+    {
+        if ($this->reservations->removeElement($reservation)) {
+            // set the owning side to null (unless already changed)
+            if ($reservation->getStudio() === $this) {
+                $reservation->setStudio(null);
+            }
+        }
+
+        return $this;
     }
 }
