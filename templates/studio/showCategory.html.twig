@@ -15,11 +15,12 @@
       <img class="align-self-start mr-3" height="300" src="{{ studio.poster }}" alt="poster of {{ studio.name }} ">
       <p>Summary :
         {{ studio.summary }}</p>
+      {# 
       <p>detail :
         {{ studio.detail }}</p>
-      <p>unitPrice :
+       <p>unitPrice :
         {{ studio.unitPrice }}</p>
-      {# 
+     
       <p>Created on:
         {{ company.createdAt }}</p>
       <p>Updated on:
@@ -27,6 +28,11 @@
     
         <p>slug :
           {{ category.slug }}</p> #}
+      <div>
+        <p>
+          <a href="{{ path('studio_show', {'id': studio.id}) }}" class="btn btn-lg btn-primary">Detail</a>
+        </p>
+      </div>
     </div>
   {% endfor %}
 

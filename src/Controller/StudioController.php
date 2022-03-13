@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Studio;
 use App\Entity\CategoryStudio;
 use App\Repository\StudioRepository;
 use App\Repository\CategoryStudioRepository;
@@ -38,6 +39,19 @@ class StudioController extends AbstractController
         return $this->render('studio/showCategory.html.twig', [
             'category' => $category,
             'studios' => $studios
+        ]);
+    }
+
+
+    /**
+     * show a studio 
+     * 
+     * @Route("/studio/{id}", name="studio_show", methods={"GET"})
+     */
+    public function showStudio(Studio $studio): Response
+    {
+        return $this->render('studio/showStudio.html.twig', [
+            'studio' => $studio
         ]);
     }
 }
