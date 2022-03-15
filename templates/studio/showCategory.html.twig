@@ -10,11 +10,11 @@
     <div class="container">
       <h3 class="mt-0">
         {{ studio.name }}
-        studios</h3>
+        studio</h3>
 
       <img class="align-self-start mr-3" height="300" src="{{ studio.poster }}" alt="poster of {{ studio.name }} ">
       <p>Summary :
-        {{ studio.summary }}</p>
+        {{ studio.summary|raw }}</p>
       {# 
       <p>detail :
         {{ studio.detail }}</p>

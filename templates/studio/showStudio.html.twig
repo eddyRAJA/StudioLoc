@@ -7,33 +7,36 @@
   <div class="container">
     <h1 class="mt-0">
       {{ studio.name }}
-      studios</h1>
+      studio</h1>
 
     <img class="align-self-start mr-3" height="300" src="{{ studio.poster }}" alt="poster of {{ studio.name }} ">
     <p>Summary :
-      {{ studio.summary }}</p>
-    <p>detail :
-      {{ studio.detail }}</p>
-    <p>unitPrice :
-      {{ studio.unitPrice }}</p>
-    {# 
+    </br>
+    {{ studio.summary|raw }}</p>
+  <p>detail :
+  </br>
+  {{ studio.detail|raw }}</p>
+<p>unitPrice :
+  {{ studio.unitPrice }}
+  €</p>
+{# 
       <p>Created on:
         {{ company.createdAt }}</p>
       <p>Updated on:
         {{ company.updatedAt }}</p>#}
-    <div>
-      <p>
-        <a href="" class="btn btn-lg btn-primary">I rent</a>
-      </p>
-    </div>
-    <p>slug :
-      {{ studio.slug }}</p>
+<div>
+  <p>
+    <a href="" class="btn btn-lg btn-primary">I rent</a>
+  </p>
+</div>
+<p>slug :
+  {{ studio.slug }}</p>
 
-  </div>
+</div>
 
 </div>
 <div class="container">
-  <pre>
+<pre>
     {{ dump(studio) }}
 </pre>
 </div>

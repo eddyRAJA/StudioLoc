@@ -24,16 +24,19 @@
 
       <img class="align-self-start mr-3" height="300" src="{{ company.poster }}" alt="poster of {{ company.name }} ">
       <p>Description :
-        {{ company.description }}</p>
+        {{ company.description|raw }}</p>
       {# 
       <p>Created on:
         {{ company.createdAt }}</p>
       <p>Updated on:
         {{ company.updatedAt }}</p>
      #}
-      <p>slug :
-        {{ company.slug }}</p>
+      <p>Updated on:
+        {{ company.updatedAt ? company.updatedAt|date('Y-m-d H:i:s') : '' }}
+      </p>
     </div>
+    <p>
+      {{ company.slug }}</p>
 
   </div>
 {% endblock %}

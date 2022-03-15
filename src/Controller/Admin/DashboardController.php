@@ -2,11 +2,17 @@
 
 namespace App\Controller\Admin;
 
-use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
-use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
+use App\Entity\User;
+use App\Entity\Studio;
+use App\Entity\AboutUs;
+use App\Entity\Company;
+use App\Entity\Reservation;
+use App\Entity\CategoryStudio;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -27,6 +33,15 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+         yield MenuItem::linkToCrud('Our company', 'fas fa-list', Company::class);
+         yield MenuItem::linkToCrud('About us', 'fas fa-list', AboutUs::class);
+         yield MenuItem::linkToCrud('The gategories of studios', 'fas fa-list', CategoryStudio::class);
+         yield MenuItem::linkToCrud('All studios', 'fas fa-list', Studio::class);
+         yield MenuItem::linkToCrud('The reservations', 'fas fa-list', Reservation::class);
+         yield MenuItem::linkToCrud('The users', 'fas fa-list', User::class);
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
+        // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
+        // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
+         yield MenuItem::linkToRoute('Back to the website', 'fas fa-list', 'home');
     }
 }
