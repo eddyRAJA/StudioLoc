@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Reservation{% endblock %}
+
+{% block body %}
+  <h1>Create new Reservation</h1>
+  {{ reservation.author }}, you have choose to rent
+  {{ studio.name }}
+  studio:
+
+  {{ include('reservation/_form.html.twig') }}
+
+  <a href="{{ path('reservation_index') }}">back to list</a>
+{% endblock %}

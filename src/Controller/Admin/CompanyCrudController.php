@@ -6,6 +6,8 @@ use App\Entity\Company;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 
 class CompanyCrudController extends AbstractCrudController
 {
@@ -24,5 +26,15 @@ class CompanyCrudController extends AbstractCrudController
             TextEditorField::new('description'),
         ];
     }
+
+
+    public function configureActions(Actions $actions): Actions
+{
+    return $actions
+        // ...
+        // this will forbid to create or delete entities in the backend
+        ->disable(Action::NEW, Action::DELETE)
+    ;
+}
     
 }
