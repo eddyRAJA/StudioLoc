@@ -6,6 +6,9 @@ use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+
 
 class UserCrudController extends AbstractCrudController
 {
@@ -32,4 +35,14 @@ class UserCrudController extends AbstractCrudController
             //TextField::new('roles'),
         ];
     }
+
+
+    public function configureActions(Actions $actions): Actions
+{
+    return $actions
+        // ...
+        // this will forbid to create or delete entities in the backend
+        ->disable(Action::NEW)
+    ;
+}
 }
