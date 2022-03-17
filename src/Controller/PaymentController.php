@@ -29,8 +29,12 @@ class PaymentController extends AbstractController
      */
     public function checkout($stripeSK): Response
     {
-        Stripe::setApiKey($stripeSK);
+        if (isset($_POST['amount']) && !empty($_POST['amount'])) {
+            $total = (float)$_POST['amount'];
+        }
 
+        Stripe::setApiKey($stripeSK);
+//dd($total);
         $session = Session::create([
             'line_items' => [[
               'price_data' => [
@@ -38,7 +42,7 @@ class PaymentController extends AbstractController
                 'product_data' => [
                   'name' => 'Reservations',
                 ],
-                'unit_amount' => 30000,
+                'unit_amount' => $total * 100,  //  total
               ],
               'quantity' => 1,
             ]],
@@ -46,7 +50,7 @@ class PaymentController extends AbstractController
             'success_url' => $this->generateUrl('success_url', [], UrlGeneratorInterface::ABSOLUTE_URL),
             'cancel_url' => $this->generateUrl('cancel_url', [], UrlGeneratorInterface::ABSOLUTE_URL),
         ]);
-
+//dd($session);
           return $this->redirect($session->url,303);
         
     }

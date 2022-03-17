@@ -67,26 +67,34 @@
             </tr>
           {% endfor %}
         </tbody>
-        <tfoot>
-          <tr>
-            <td colspan="3">Total</td>
-            <td>{{ total }}
-              €</td>
-            <td>
-              {% if dataCady %}
+        {% if dataCady %}
+          <tfoot>
+            <tr>
+              <td colspan="3">Total</td>
+              <td>{{ total }}
+                €</td>
+              <td>
                 <a href="{{ path('cart_delete_all') }}" class="btn btn-danger">
                   <i class="bi bi-cart-x">DeleteAll</i>
                 </a>
-                <a href="" class="btn btn-success">
-                  <i class="bi bi-cart-x">Payment</i>
-                </a>
-              {% endif %}
 
-            </td>
-          </tr>
-        </tfoot>
+              </td>
+            </tr>
+          </tfoot>
+        {% endif %}
       </table>
     </div>
   </div>
+
+  {% if dataCady %}
+    <div>
+      <form action="/checkout" method="POST"></br>
+      <label for="amount">Amout due:
+      </label>
+      <input type="float" name="amount" id="amount" value="{{ total }}">
+      <button type="submit" class="btn btn-primary btn-lg">Payment</button>
+    </form>
+  </div>
+{% endif %}
 
 {% endblock %}

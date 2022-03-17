@@ -38,7 +38,7 @@ class CartController extends AbstractController
 
         //build data
         $dataCady = [];
-        $total = 0;
+        $total = 0.00;
         //dd($cady);
 
         foreach ($cady as $id => $quantity) {
@@ -46,6 +46,8 @@ class CartController extends AbstractController
 
             $studioId = $reservation->getStudio()->getId();
             $studio = $studioRepository->findById($studioId);
+
+            dd($reservation);
 
             $dataCady[] = [
                 "reservation" => $reservation,
