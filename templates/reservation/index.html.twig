@@ -35,6 +35,8 @@
           <td>
             <a href="{{ path('reservation_show', {'id': reservation.id}) }}">show</a>
             <a href="{{ path('reservation_edit', {'id': reservation.id}) }}">edit</a>
+
+            {#<a href="{{ path('cart_add', {'id': reservation.id}) }}" class="btn btn-primary">add</a>#}
           </td>
         </tr>
       {% else %}
