@@ -73,9 +73,12 @@
             <td>{{ total }}
               €</td>
             <td>
-              <a href="{{ path('cart_delete_all') }}" class="btn btn-danger">
-                <i class="bi bi-cart-x">DeleteAll</i>
-              </a>
+              {% if dataCady %}
+                <a href="{{ path('cart_delete_all') }}" class="btn btn-danger">
+                  <i class="bi bi-cart-x">DeleteAll</i>
+                </a>
+              {% endif %}
+
             </td>
           </tr>
         </tfoot>
