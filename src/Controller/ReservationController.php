@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use DateTime;
 
 /**
  * @Route("/reservation")
@@ -44,6 +45,7 @@ class ReservationController extends AbstractController
     public function new(Request $request, EntityManagerInterface $em, Studio $studio): Response
     {
         $unitPrice = $studio->getUnitPrice();
+        
         $reservation = new Reservation();
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
@@ -53,16 +55,17 @@ class ReservationController extends AbstractController
 
 
         if ($form->isSubmitted() && $form->isValid()) {
-            //$dur1 = $reservation->getEnd();
-            //$dur2 =  $reservation->getStart();
-            //dd($dur1);
-            //$duration = $dur1 - $dur2;
-        $reservation->setAmount($unitPrice*4);
-        //dd($reservation);
-        $em->persist($reservation);
-            $em->flush();
 
-            return $this->redirectToRoute('reservation_index', [], Response::HTTP_SEE_OTHER);
+            $d1 = $reservation->getStart();
+            $d2 = $reservation->getEnd();
+            $diff = $d1->diff($d2);
+            $qtty = $diff->h;
+        $reservation->setAmount($unitPrice*$qtty);
+        
+        $em->persist($reservation);
+        $em->flush();
+
+        return $this->redirectToRoute('reservation_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('reservation/new.html.twig', [

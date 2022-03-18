@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CardController!{% endblock %}
+{% block title %}Cart!{% endblock %}
 
 {% block body %}
   <style>
@@ -26,9 +26,9 @@
         <thead>
           <tr>
             <th>Studio</th>
+            <th>Unit price</th>
+            <th>Quantity hour</th>
             <th>Amount</th>
-            <th>Quantity</th>
-            <th>Total</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -39,11 +39,14 @@
               <td>{{ elt.reservation.studio }}
               </td>
               <td >
-                {{ elt.reservation.amount }}
+                {{ elt.reservation.studio.unitPrice }}
                 €</td>
+
               <td >{{ elt.quantity }}
               </td>
-              <td >{{ elt.quantity * elt.reservation.amount }}
+              <td >{{ elt.reservation.studio.unitPrice 
+                *
+            elt.quantity }}
               </td>
               <td>
                 {#     <a href="{{ path('cart_add', {'id': elt.reservation.id }) }}" class="btn btn-success">
@@ -67,20 +70,34 @@
             </tr>
           {% endfor %}
         </tbody>
-        <tfoot>
-          <tr>
-            <td colspan="3">Total</td>
-            <td>{{ total }}
-              €</td>
-            <td>
-              {% if dataCady %}
+        {% if dataCady %}
+          <tfoot>
+            <tr>
+              <td colspan="3">Total</td>
+              <td>{{ total }}
+                €</td>
+              <td>
                 <a href="{{ path('cart_delete_all') }}" class="btn btn-danger">
                   <i class="bi bi-cart-x">DeleteAll</i>
                 </a>
-              {% endif %}
 
-            </td>
-          </tr>
-        </tfoot>
+              </td>
+            </tr>
+          </tfoot>
+        {% endif %}
+      </table>
+    </div>
+  </div>
 
-      {% endblock %}
+  {% if dataCady %}
+    <div>
+      <form action="/checkout" method="POST"></br>
+      <label for="amount">Amout due:
+      </label>
+      <input type="float" name="amount" id="amount" value="{{ total }}">
+      <button type="submit" class="btn btn-primary btn-lg">Payment</button>
+    </form>
+  </div>
+{% endif %}
+
+{% endblock %}

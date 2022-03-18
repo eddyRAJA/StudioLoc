@@ -25,9 +25,12 @@
       <p>Updated on:
         {{ company.updatedAt }}</p>#}
 <div>
-  <p>
+  {% if app.user %}
     <a href="{{ path('reservation_new', { 'name' : studio.name }) }}" class="btn btn-lg btn-primary">I rent</a>
-  </p>
+  {% else %}
+    <h5>Please connect for rent!</h5>
+
+  {% endif %}
 </div>
 <p>slug :
   {{ studio.slug }}</p>

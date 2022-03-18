@@ -36,10 +36,8 @@ class CartController extends AbstractController
     {
         $cady = $session->get("cady", []);
 
-        //build data
         $dataCady = [];
-        $total = 0;
-        //dd($cady);
+        $total = 0.00;
 
         foreach ($cady as $id => $quantity) {
             $reservation = $reserv->find($id);
@@ -47,14 +45,20 @@ class CartController extends AbstractController
             $studioId = $reservation->getStudio()->getId();
             $studio = $studioRepository->findById($studioId);
 
+            $d1 = $reservation->getStart();
+            $d2 = $reservation->getEnd();
+            $diff = $d1->diff($d2);
+            $qtty = $diff->h;
+
+            $up = $reservation->getStudio()->getUnitPrice();
+
             $dataCady[] = [
                 "reservation" => $reservation,
-                "quantity" => $quantity,
+                "quantity" => $qtty,
             ];
 
-            $total += $reservation->getAmount() * $quantity;
+            $total += $up * $qtty;
         }
-        //dd($dataCady);
 
         return $this->render(
             'cart/index.html.twig', compact("dataCady", "total"));
