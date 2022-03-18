@@ -34,7 +34,7 @@ class PaymentController extends AbstractController
         }
 
         Stripe::setApiKey($stripeSK);
-//dd($total);
+
         $session = Session::create([
             'line_items' => [[
               'price_data' => [
@@ -50,7 +50,7 @@ class PaymentController extends AbstractController
             'success_url' => $this->generateUrl('success_url', [], UrlGeneratorInterface::ABSOLUTE_URL),
             'cancel_url' => $this->generateUrl('cancel_url', [], UrlGeneratorInterface::ABSOLUTE_URL),
         ]);
-//dd($session);
+
           return $this->redirect($session->url,303);
         
     }

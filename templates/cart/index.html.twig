@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CardController!{% endblock %}
+{% block title %}Cart!{% endblock %}
 
 {% block body %}
   <style>
@@ -26,9 +26,9 @@
         <thead>
           <tr>
             <th>Studio</th>
+            <th>Unit price</th>
+            <th>Quantity hour</th>
             <th>Amount</th>
-            <th>Quantity</th>
-            <th>Total</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -39,11 +39,14 @@
               <td>{{ elt.reservation.studio }}
               </td>
               <td >
-                {{ elt.reservation.amount }}
+                {{ elt.reservation.studio.unitPrice }}
                 €</td>
+
               <td >{{ elt.quantity }}
               </td>
-              <td >{{ elt.quantity * elt.reservation.amount }}
+              <td >{{ elt.reservation.studio.unitPrice 
+                *
+            elt.quantity }}
               </td>
               <td>
                 {#     <a href="{{ path('cart_add', {'id': elt.reservation.id }) }}" class="btn btn-success">
