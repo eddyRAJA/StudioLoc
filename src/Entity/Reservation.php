@@ -58,7 +58,7 @@ class Reservation
     private $updatedAt;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true, options={"default"=false} )
+     * @ORM\Column(type="boolean", options={"default"=false}, nullable=true )
      */
     private $registered;
 

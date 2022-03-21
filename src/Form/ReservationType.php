@@ -24,7 +24,7 @@ class ReservationType extends AbstractType
             //->add('amount')       backend
             //->add('createdAt')
             //->add('updatedAt')
-            ->add('registered')
+            //->add('registered')
         ;
     }
 

@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use DateTime;
+use App\Entity\User;
 use App\Entity\Studio;
 use App\Entity\Reservation;
 use App\Form\ReservationType;
@@ -11,7 +13,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use DateTime;
 
 /**
  * @Route("/reservation")
@@ -53,7 +54,7 @@ class ReservationController extends AbstractController
         $reservation->setAuthor($this->getUser());
         $reservation->setStudio($studio);
 
-
+        $id = $this->getUser()->getId();
         if ($form->isSubmitted() && $form->isValid()) {
 
             $d1 = $reservation->getStart();
@@ -65,7 +66,9 @@ class ReservationController extends AbstractController
         $em->persist($reservation);
         $em->flush();
 
-        return $this->redirectToRoute('reservation_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('user_show', ['id' => $id]);
+            #return $this->redirectToRoute('categories_show');
+            #return $this->redirectToRoute('reservation_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('reservation/new.html.twig', [
@@ -116,5 +119,20 @@ class ReservationController extends AbstractController
         }
 
         return $this->redirectToRoute('reservation_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    /**
+     * show a user with all of them studios
+     * 
+     * @Route("/user/{id}", name="user_show", methods={"GET"})
+     */
+    public function showreservationOfUser(User $user): Response
+    {
+        $reservations = $user->getReservations();
+
+        return $this->render('reservation/show_user.html.twig', [
+            'user' => $user,
+            'reservations' => $reservations
+        ]);
     }
 }

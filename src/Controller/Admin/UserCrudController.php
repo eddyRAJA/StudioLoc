@@ -3,11 +3,12 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 
 
 class UserCrudController extends AbstractCrudController
@@ -26,6 +27,7 @@ class UserCrudController extends AbstractCrudController
             TextField::new('firstname'),
             TextField::new('lastname'),
             TextField::new('email'),
+            ArrayField::new('roles'),
             TextField::new('phone'),
             TextField::new('adress'),
             TextField::new('linkedin'),

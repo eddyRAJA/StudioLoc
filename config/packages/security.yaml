@@ -34,4 +34,5 @@ security:
     access_control:
         - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY } # I add it
         - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/profile, roles: ROLE_CONTRIBUTOR }
         - { path: ^/profile, roles: ROLE_USER }

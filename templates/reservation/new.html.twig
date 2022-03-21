@@ -9,7 +9,9 @@
   ({{ reservation.id }}) studio:
 
   {{ include('reservation/_form.html.twig') }}
+</br>
+<a href="{{ path('user_show', {'id': reservation.author.id}) }}" class="btn btn-outline-primary">My preferences</a>
 
-  <a href="{{ path('reservation_index') }}">back to list</a>
+{#<a href="{{ path('reservation_index') }}">back to list</a>#}
 
 {% endblock %}
