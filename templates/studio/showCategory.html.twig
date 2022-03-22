@@ -11,8 +11,9 @@
       <h3 class="mt-0">
         {{ studio.name }}
         studio</h3>
-
-      <img class="align-self-start mr-3" height="300" src="{{ studio.poster }}" alt="poster of {{ studio.name }} ">
+      <div class="text-center">
+        <img class="align-self-start mr-3" height="400" src="{{ studio.poster }}" alt="poster of {{ studio.name }} ">
+      </div>
       <p>Summary :
         {{ studio.summary|raw }}</p>
       {# 
@@ -36,11 +37,11 @@
     </div>
   {% endfor %}
 
-</div>
+  {#</div>
 <div class="container">
   <pre>
     {{ dump(studios) }}
 </pre>
-</div>
+</div>#}
 
 {% endblock %}
