@@ -21,8 +21,8 @@
     <div class="media-body">
       <h1 class="mt-0">
         {{ company.name }}</h1>
+      <div class="text-center"><img class="img-fluid" src="{{ company.poster }}" alt="poster of {{ company.name }} "></div>
 
-      <img class="align-self-start mr-3" height="300" src="{{ company.poster }}" alt="poster of {{ company.name }} ">
       <p>Description :
         {{ company.description|raw }}</p>
       {# 

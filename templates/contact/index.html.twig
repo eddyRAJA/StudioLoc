@@ -27,16 +27,15 @@
       </div>
     </br>
   </br>
-</br>
-<div class="mb-3">
-  {{ form_start(form) }}
-  {{ form_row(form.object) }}
-  {{ form_row(form.message) }}
-  <div class="modal-foote"><br/>
-    <button class="btn-small primary">Send</button>
+  <div class="mb-3">
+    {{ form_start(form) }}
+    {{ form_row(form.object) }}
+    {{ form_row(form.message) }}
+    <div class="modal-foote"><br/>
+      <button class="btn-small primary">Send</button>
+    </div>
+    {{ form_end(form) }}
   </div>
-  {{ form_end(form) }}
-</div>
 </div>
 </div>
 {% endblock %}
