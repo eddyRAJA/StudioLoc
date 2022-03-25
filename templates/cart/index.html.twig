@@ -1,0 +1,103 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cart!{% endblock %}
+
+{% block body %}
+  <style>
+    .example-wrapper {
+      margin: 1em auto;
+      max-width: 800px;
+      width: 95%;
+      font: 18px/1.5 sans-serif;
+    }
+    .example-wrapper code {
+      background: #F5F5F5;
+      padding: 2px 6px;
+    }
+  </style>
+
+  <div class="example-wrapper">
+    <div class="container">
+      <section class="bg-light p-3">
+        <h2>Your cady of reservation</h2>
+      </section>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Studio</th>
+            <th>Unit price</th>
+            <th>Quantity hour</th>
+            <th>Amount</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for elt in dataCady %}
+            <tr>
+              <td>{{ elt.reservation.studio }}
+              </td>
+              <td >
+                {{ elt.reservation.studio.unitPrice }}
+                €</td>
+
+              <td >{{ elt.quantity }}
+              </td>
+              <td >{{ elt.reservation.studio.unitPrice 
+                *
+            elt.quantity }}
+              </td>
+              <td>
+                {#     <a href="{{ path('cart_add', {'id': elt.reservation.id }) }}" class="btn btn-success">
+                  <i class="bi bi-cart-plus"></i>
+                </a> 
+                <a href="{{ path('cart_remove', {'id': elt.reservation.id }) }}" class="btn btn-danger">
+                  <i class="bi bi-cart-dash"></i>
+                </a>
+             #}
+                <a href="{{ path('cart_delete', {'id': elt.reservation.id }) }}" class="btn btn-outline-warning btn-sm">
+                  <i class="bi bi-cart-x">Delete</i>
+                </a>
+              </td>
+            </tr>
+
+          {% else %}
+            <tr>
+              <td colspan="5" class="text-center">
+                Your cady is empty
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+        {% if dataCady %}
+          <tfoot>
+            <tr>
+              <td colspan="3">Total</td>
+              <td>{{ total }}
+                €</td>
+              <td>
+                <a href="{{ path('cart_delete_all') }}" class="btn btn-outline-danger btn-sm">
+                  <i class="bi bi-cart-x">DeleteAll</i>
+                </a>
+
+              </td>
+            </tr>
+          </tfoot>
+        {% endif %}
+      </table>
+    </div>
+  </div>
+
+  {% if dataCady %}
+    <div>
+      <form action="/checkout" method="POST"></br>
+      <label for="amount">Amount due:
+      </label>
+      <input type="float" name="amount" id="amount" value="{{ total }}">
+      <button type="submit" class="btn btn-primary btn-lg">Payment</button>
+    </form>
+  </div>
+{% endif %}
+
+{% endblock %}

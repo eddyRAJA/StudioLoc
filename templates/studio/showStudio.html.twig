@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Studio{% endblock %}
+
+{% block body %}
+
+  <div class="container">
+    <h1 class="mt-0">
+      {{ studio.name }}
+      studio</h1>
+    <div class="text-center">
+      <img class="align-self-start mr-3" height="500" src="{{ studio.poster }}" alt="poster of {{ studio.name }} ">
+    </div>
+    <p>Summary :
+    </br>
+    {{ studio.summary|raw }}</p>
+  <p>detail :
+  </br>
+  {{ studio.detail|raw }}</p>
+<p>unitPrice :
+  {{ studio.unitPrice }}
+  €</p>
+{# 
+      <p>Created on:
+        {{ company.createdAt }}</p>
+      <p>Updated on:
+        {{ company.updatedAt }}</p>#}
+<div>
+  {% if app.user %}
+    <a href="{{ path('reservation_new', { 'name' : studio.name }) }}" class="btn btn-lg btn-primary">I rent</a>
+  {% else %}
+    <h5>Please connect for rent!</h5>
+
+  {% endif %}
+</div>
+<p>slug :
+  {{ studio.slug }}</p>
+
+</div>
+
+</div>
+{#<div class="container">
+<pre>
+    {{ dump(studio) }}
+</pre>
+</div>#}
+
+{% endblock %}

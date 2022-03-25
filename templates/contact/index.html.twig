@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ContactController!{% endblock %}
+
+{% block body %}
+  <style>
+    .example-wrapper {
+      margin: 1em auto;
+      max-width: 800px;
+      width: 95%;
+      font: 18px/1.5 sans-serif;
+    }
+    .example-wrapper code {
+      background: #F5F5F5;
+      padding: 2px 6px;
+    }
+  </style>
+  <div class="container">
+    <div class="example-wrapper">
+      <div class="mb-3">
+        <h3>
+          {{ app.user.firstname }}
+          {{ app.user.lastname }}, you are in our contact area,
+        </h3>
+        <p>Your comments, suggestions or questions will be answered as soon as possible.</p>
+        <p>The StudioLoc team.</p>
+      </div>
+    </br>
+  </br>
+  <div class="mb-3">
+    {{ form_start(form) }}
+    {{ form_row(form.object) }}
+    {{ form_row(form.message) }}
+    <div class="modal-foote"><br/>
+      <button class="btn-small primary">Send</button>
+    </div>
+    {{ form_end(form) }}
+  </div>
+</div>
+</div>
+{% endblock %}

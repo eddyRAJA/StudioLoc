@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}reservOfUser{% endblock %}
+
+{% block body %}
+  <h1>{{ user.firstname }}
+    {{ user.lastname }}'reservations</h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Studio</th>
+        <th>Amount</th>
+        <th>Start</th>
+        <th>End</th>
+        <th>CreatedAt</th>
+        <th>UpdatedAt</th>
+        {#<th>Author</th>#}
+        <th>Registered</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for reservation in reservations %}
+
+        <tr>
+          <td>{{ reservation.id }}</td>
+          <td>{{ reservation.studio }}</td>
+          <td>{{ reservation.amount }}</td>
+          <td>{{ reservation.start ? reservation.start|date('Y-m-d H:i:s') : '' }}</td>
+          <td>{{ reservation.end ? reservation.end|date('Y-m-d H:i:s') : '' }}</td>
+          <td>{{ reservation.createdAt ? reservation.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+          <td>{{ reservation.updatedAt ? reservation.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+          {#<td>{{ reservation.author }}</td>#}
+          <td>{{ reservation.registered ? 'Yes' : 'No' }}</td>
+          <td>
+            <a href="{{ path('reservation_show', {'id': reservation.id}) }}" class="btn btn-outline-primary btn-sm">show</a>
+            <a href="{{ path('reservation_edit', {'id': reservation.id}) }}" class="btn btn-outline-primary btn-sm">edit</a>
+            <a href="{{ path('cart_add', {'id': reservation.id}) }}" class="btn btn-success btn-sm">add</a>
+          </td>
+        </tr>
+      {% else %}
+        <tr>
+          <td colspan="8">no records found</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{{ path('categories_show') }}" class="btn btn-primary btn-sm">Others categories</a>
+  {# <a href="{{ path('reservation_new', { 'name' : studio.name }) }}">Create new</a>#}
+{% endblock %}
