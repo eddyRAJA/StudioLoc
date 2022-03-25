@@ -27,7 +27,7 @@
         <div class="text-center"><img class="align-self-start mr-3" height="400" src="{{ category.poster }}" alt="poster of {{ category.name }} "></div>
 
         <p>Description :
-          {{ category.description }}</p>
+          {{ category.description|raw }}</p>
         {# 
       <p>Created on:
         {{ company.createdAt }}</p>
