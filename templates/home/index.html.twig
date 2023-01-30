@@ -19,12 +19,13 @@
   <div class="container">
 
     <div class="media-body">
-      <h1 class="mt-0">
+      <h1 class="m-5">
         {{ company.name }}</h1>
       <div class="text-center"><img class="img-fluid" src="{{ company.poster }}" alt="poster of {{ company.name }} "></div>
-
-      <p>Description :
-        {{ company.description|raw }}</p>
+      <div class="m-5 p-5">
+        <p>Description :
+          {{ company.description|raw }}</p>
+      </div>
       {# 
       <p>Created on:
         {{ company.createdAt }}</p>
@@ -39,4 +40,5 @@
       {{ company.slug }}</p>
 
   </div>
+</div>
 {% endblock %}

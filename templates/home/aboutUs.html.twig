@@ -16,12 +16,22 @@
     }
   </style>#}
 
-  <div class="container">
+  <div class="container m-5 text-center">
     <h1>About us</h1>
-    {% for aboutUs in allOfUs %}
+    <div>
+      <div class="p-5">
+        {% for aboutUs in allOfUs %}
 
-      <div class="container">
-        <h3 class="mt-0">
+          <div class="card m-5" style="width: 80%;">
+            <h3 class="card-title m-4">{{ aboutUs.title }}</h3>
+            <img src="{{ aboutUs.poster }}" class="card-img-top" alt="poster of {{ aboutUs.title }}">
+            <div class="card-body">
+              <p class="card-text">{{ aboutUs.description|raw }}</p>
+              {#<a href="#" class="btn btn-primary float-end">Go somewhere</a>#}
+            </div>
+          </div>
+
+          {#<h3 class="mt-0">
           {{ aboutUs.title }}</h3>
         <div class="text-center"><img class="img-fluid" height="600" src="{{ aboutUs.poster }}" alt="poster of {{ aboutUs.title }} "></div>
 
@@ -33,10 +43,12 @@
       <p>Updated on:
         {{ company.updatedAt }}</p>
      #}
+          {#
         <p>slug :
-          {{ aboutUs.slug }}</p>
+             {{ aboutUs.slug }}</p>
+      </div>#}
+        {% endfor %}
       </div>
-    {% endfor %}
-
+    </div>
   </div>
 {% endblock %}

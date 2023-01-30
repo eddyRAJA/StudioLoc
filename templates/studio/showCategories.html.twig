@@ -17,16 +17,17 @@
   </style>#}
 
   <div class="container">
-    <h1>All categories of studios</h1>
+    <h1 class="m-5">All categories of studios</h1>
 
     {% for category in categories %}
+
       <div class="container">
-        <h3 class="mt-0">
+        <h3 class="mt-0 text-center m-3">
           {{ category.name }}
           studios</h3>
         <div class="text-center"><img class="align-self-start mr-3" height="400" src="{{ category.poster }}" alt="poster of {{ category.name }} "></div>
 
-        <p>Description :
+        <p class="px-5">Description :
           {{ category.description|raw }}</p>
         {# 
       <p>Created on:
